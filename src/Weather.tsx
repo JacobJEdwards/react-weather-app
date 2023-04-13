@@ -5,19 +5,6 @@ import { fetchWeather } from './utility/fetchWeather'
 import Loading from './Loading'
 import Error from './Error'
 
-interface WeatherData {
-  cloud_pct: number
-  feels_like: number
-  humidity: number
-  max_temp: number
-  min_temp: number
-  sunrise: number
-  sunset: number
-  temp: number
-  wind_degrees: number
-  wind_speed: number
-}
-
 type WeatherProps = {
   city: string
 }
@@ -33,7 +20,7 @@ const Weather: FC<WeatherProps> = ({ city }: WeatherProps) => {
   if (error || data === undefined)
     return <Error error={error ? error : 'Unknown error'} />
 
-  if (data) console.log(data)
+  if (data === undefined) return <Error error='No data' />
 
   return <div>{data.max_temp}</div>
 }
